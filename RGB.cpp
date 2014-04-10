@@ -66,6 +66,11 @@ void RGBLED::gradient(RGB startColor, RGB endColor) {
 	this->gradient(startColor, endColor, 1000, 16);
 }
 
+void RGBLED::tri_gradient(RGB startColor, RGB stopColor, RGB endColor) {
+  this->gradient(startColor, stopColor, 1000, 16);
+  this->gradient(stopColor, endColor, 1000, 16);
+}
+
 void RGBLED::gradient(RGB startColor, RGB endColor, int durationInMS, int steps) {
 #ifdef DEBUG
   Serial.print("In RGBLED::gradient(");
@@ -73,18 +78,18 @@ void RGBLED::gradient(RGB startColor, RGB endColor, int durationInMS, int steps)
   Serial.print(", ");
   Serial.print(endColor.toString());
   Serial.println(")");
-#endif  
+#endif
   float stepRed = (endColor.getRed() - startColor.getRed()) / steps; // It's ok if these are negative, because they will still get 'added' to the start color.
   float stepGreen = (endColor.getGreen() - startColor.getGreen()) / steps;
   float stepBlue = (endColor.getBlue() - startColor.getBlue()) / steps;
-  
+
   Serial.print("stepRed = ");
   Serial.println(stepRed);
-  
+
   int red = startColor.getRed();
   int green = startColor.getGreen();
   int blue = startColor.getBlue();
-  
+
   for (int i = 0; i <= steps; i++) {
     this->setColor(RGB(red,green,blue));
     red += stepRed;

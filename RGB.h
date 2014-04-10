@@ -5,7 +5,7 @@
 #define RGB_h
 
 class RGB {
-	public: 
+	public:
 		RGB(unsigned long rgbValue);
 		RGB(int red, int green, int blue);
 		int getRed();
@@ -29,6 +29,7 @@ class RGBLED {
 		void gradient(RGB startColor, RGB endColor, int durationInMS, int steps);
 		void gradient(RGB startColor, RGB endColor);
 		void gradient(unsigned long startColor, unsigned long endColor);
+		void tri_gradient(RGB startColor, RGB stopColor, RGB endColor);
 	private:
 		int _redPin;
 		int _greenPin;
